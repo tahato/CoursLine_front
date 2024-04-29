@@ -1,0 +1,19 @@
+
+.formcontainer{
+  display: flex;
+  align-items: center;
+}
+.leftform {
+  width:60%;
+  height: 99vh;
+ 
+}
+
+.leftform img{
+  width: 100%;
+  height: 100%;
+}
+.logosign{
+  width: 50px;
+  height: 50px;
+}
