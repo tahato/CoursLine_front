@@ -3,6 +3,7 @@ const Student = () => {
     return (
         <div>
             Student page
+            
         </div>
     );
 };

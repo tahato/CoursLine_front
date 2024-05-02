@@ -11,7 +11,10 @@ import Register from "./Pages/Register/Register.jsx";
 import Login from "./Pages/Login/Login.jsx";
 import Student from "./Pages/student/Student.jsx";
 import ResetPassWord from "./Pages/ResetPassWord/ResetPassWord.jsx";
-
+import { Provider } from "react-redux";
+import store from "./Redux/Store.js"
+import Contact from "./Pages/Contact/Contact.jsx";
+import Teacher from "./Pages/Teacher/Teacher.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,13 +33,24 @@ const router = createBrowserRouter([
     element: <Student />,
   },
   {
+    path: "/teacher",
+    element: <Teacher />,
+  },
+  {
     path: "/resetpassword",
     element: <ResetPassWord />,
   },
+  {
+    path: "/contact",
+    element: <Contact />,
+  },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <Provider store={store}>
     <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );

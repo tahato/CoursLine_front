@@ -1,0 +1,44 @@
+.sidebar {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  bottom: 0;
+  background-color: lightgrey;
+  width: 250px;
+}
+.upSidebare{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    font-size: 25px;
+    border-bottom: 1px solid white ;
+}
+.imgrofile{
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    color: #ffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sidelist {
+margin-top: 10px;
+  list-style: none;
+  border-bottom: 1px solid white;
+ padding: 2px;
+}
+.listelement{
+    padding: 5px 5px 20px 10px;
+    
+}
+.listelement:hover{
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+.sidebarIcon{
+    margin-right: 5px;
+}

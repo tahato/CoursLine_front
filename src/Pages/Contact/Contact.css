@@ -1,0 +1,41 @@
+.contactContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  gap: 50px;
+}
+.leftContact {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 40vh;
+}
+
+.leftContact h3 {
+  margin-bottom: 30px;
+}
+.upContact {
+  display: flex;
+  gap: 10px;
+}
+.contactForm {
+  height: 40vh;
+}
+.entree {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 30px;
+  
+}
+#Email{width: 100%;}
+.entree input {
+  font-size: 15px;
+  height: 40px;
+  padding: 5px;
+}
+#message {
+  font-size: 20px;
+  width: 100%;
+}

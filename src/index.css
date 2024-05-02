@@ -24,9 +24,7 @@ button:hover{
     margin: 0
     10px;
 }
-body{
-    background-color: rgb(243, 231, 216);
-}
+
 .bluebtn{
     border: 2px solid blue;
     border-radius: 10px;
