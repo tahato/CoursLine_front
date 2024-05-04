@@ -1,0 +1,28 @@
+.courseContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 25%);
+  grid-auto-rows: minmax(100px, auto);
+  grid-column-gap: 30px;
+  grid-row-gap: 20px;
+  margin: 50px;
+  padding: 0 100px;
+}
+.courseCard:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.courseCardInfo {
+  display: flex;
+  justify-content: space-between;
+}
+.search-bar-container {
+  width: 50%;
+  margin: 50px 20%;
+  padding: 3px;
+  background-color: blue;
+  border-radius: 30px;
+}
+.pagination{
+   position: relative;
+   left: 40%;
+}

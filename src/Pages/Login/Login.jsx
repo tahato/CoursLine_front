@@ -2,8 +2,6 @@ import logo from "../../assets/coursline_logo.webp";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import { Link, useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -12,15 +10,14 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./Login.css";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { login } from "../../Redux/Slices/Authslice";
 import signup from "../../assets/signup.svg";
 import "./Login.css";
-import { useState } from "react";
+
 
 const Login = () => {
-  const [role, setRole] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -41,8 +38,8 @@ const Login = () => {
   }
   const defaultTheme = createTheme();
   // ............... fin sign in mui component function.......................
-console.log(role);
-  // .......................form submit function.................................
+
+  // .......................form submit function  login  .................................
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -55,6 +52,7 @@ console.log(role);
       })
       .then((res) => {
         dispatch(login(res.data.user));
+        const role = res.data.user.role;
         localStorage.setItem("token", res.data.token);
         navigate(`/${role}`);
       })
@@ -119,31 +117,7 @@ console.log(role);
                     id="password"
                     autoComplete="current-password"
                   />
-                  <form className="radiobox">
-                    <div>
-                      <input
-                        type="radio"
-                        name="role"
-                        id="student"
-                        value="student"
-                        required
-                        onChange={()=>(setRole("student"))}
-                      />
-                      <label htmlFor="student">Student</label>
-                    </div>
-                    <div>
-                      <input
-                        type="radio"
-                        name="role"
-                        id="teacher"
-                        value="teacher"
-                        required
-                        onChange={()=>(setRole("teacher"))}
 
-                      />
-                      <label htmlFor="teacher">Teacher</label>
-                    </div>
-                  </form>
                   <Button
                     type="submit"
                     fullWidth

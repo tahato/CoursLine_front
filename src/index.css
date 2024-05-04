@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Roboto;
+    scroll-behavior: smooth;
 }
 a{
     text-decoration: none;
@@ -46,4 +47,16 @@ button:hover{
     padding: 5px;
     width: 80px;
     text-align: center;
+}
+.maincontainer{
+   background-color: var(--color-bg-body);
+   color: var(--color-font);
+}
+:root{
+    --color-bg-body: #ffff;
+    --color-font:#0000;
+}
+.container{
+    --color-bg-body: #0000;
+    --color-font:#ffff;
 }

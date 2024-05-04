@@ -1,7 +1,6 @@
 .mainimg {
   width: 100%;
   height: 100vh;
-  position: relative;
 }
 .titre {
   display: flex;
@@ -23,14 +22,21 @@
   height: 90vh;
 }
 .prsentation {
-  padding: 20px;
+ 
   border-radius: 20px;
   margin: 50px 0;
 }
 .titledescreption{
 text-align: center;
     padding: 10px;
-    border-radius: 30px;
+   width: 100%;
+   height: 120px;
+    font-size: 30px;
+    margin-bottom: 80px;
+    color: #ffff;
+    background: rgb(38,60,157);
+  background: radial-gradient(circle, rgba(38,60,157,1) 0%, rgba(20,33,86,1) 100%);
+  
 }
 .homeIllustrations {
   display: flex;
@@ -40,16 +46,15 @@ text-align: center;
 }
 .illustration,
 .description_article {
-  width: 40%;
-  height: 50vh;
+  width: 30%;
+  height: 60vh;
   font-size: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
 }
 .description_article {
-  background-image: url("C:\Users\taha\Desktop\CoursLine\front\src\assets\blob3.svg");
-  background-repeat: no-repeat;
+   border-radius: 30px;
+  padding: 20px;
+ 
 }
 .list {
   display: flex;
@@ -66,4 +71,47 @@ text-align: center;
 }
 .home_footer {
   background-color: black;
+}
+.schoolimg{
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  margin: 100px;
+
+}
+.imgSchool{
+  width: 350px;
+  height: 250px;
+  transition: 0.5s;
+  border-radius: 50px;
+
+}
+.school{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+ 
+}
+.school h1{
+  font-size: 30px;
+
+}
+
+.school:hover{
+  cursor: pointer;
+
+}
+#leftimg:hover{
+  scale: 1.1;
+  rotate: -11deg;
+}
+#middleimg:hover{
+  scale: 1.1;
+ 
+}
+#rightimg:hover{
+  scale: 1.1;
+  rotate: 11deg;
 }

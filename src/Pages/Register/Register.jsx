@@ -19,8 +19,9 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Register = () => {
-  // const rrole=useSelector((state)=>state.auth.role)
-  //   console.log(rrole);
+  const role=useSelector((state)=>state.auth.role)
+  console.log(role);
+   
   function Copyright(props) {
     return (
       <Typography
@@ -49,7 +50,7 @@ const Register = () => {
     const lastName = data.get("lastName");
     const email = data.get("email");
     const password = data.get("password");
-    const role = "student";
+   
     axios
       .post("http://localhost:3000/auth/register", {
         firstName,

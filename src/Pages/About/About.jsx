@@ -1,8 +1,11 @@
-
+import NavBar from "../../Components/Navbar/NavBar"
+import NavBar from "../../Components/footer/Footer"
 const About = () => {
     return (
         <div>
-            Page About
+            <NavBar></NavBar>
+            
+            <Footer></Footer>
         </div>
     );
 };

@@ -1,10 +1,13 @@
 .sidebar {
-  position: absolute;
-  top: 80px;
+  position: fixed;
+  top: 60px;
   right: 0;
   bottom: 0;
-  background-color: lightgrey;
+  background: rgb(38,60,157);
+  background: radial-gradient(circle, rgba(38,60,157,1) 0%, rgba(20,33,86,1) 100%);
   width: 250px;
+  color: #ffff;
+  transition: 0.3s;
 }
 .upSidebare{
     display: flex;
@@ -14,7 +17,7 @@
     font-size: 25px;
     border-bottom: 1px solid white ;
 }
-.imgrofile{
+.imgprofile{
     width: 50px;
     height: 50px;
     background-color: black;
@@ -32,7 +35,7 @@ margin-top: 10px;
 }
 .listelement{
     padding: 5px 5px 20px 10px;
-    
+    transition: 0.3s;
 }
 .listelement:hover{
     background-color: white;
