@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   courses: [],
+  courseComponent:"myCourses"
 };
 
 const courseSlice = createSlice({
@@ -11,9 +12,13 @@ const courseSlice = createSlice({
     getAllCourses(state, action) {
       state.courses = action.payload;
     },
+    setComponent(state, action) {
+      state.courseComponent = action.payload;
+    },
   },
+  
 });
 
-export const { getAllCourses } = courseSlice.actions;
+export const { getAllCourses,setComponent } = courseSlice.actions;
 
 export default courseSlice.reducer;

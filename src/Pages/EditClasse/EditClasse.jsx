@@ -1,66 +1,80 @@
-import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "./CreateClasse.css";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
-const CreateClasse = () => {
-const {courseId}=useParams()
-  const [name, setName] = useState("");
-  const [day, setDay] = useState("");
-  const [startTime, setStartTime] = useState();
-  const [endTime, setEndTime] = useState();
-  const { user } = useSelector((state) => state.auth);
+const EditClasse = () => {
+   const {id}=useParams()
+   const [classe,setClasse]=useState()
+   const [name,setName]=useState()
+   const [startTime,setStartTime]=useState()
+   const [endTime,setEndTime]=useState()
+   const [day,setDay]=useState()
+   
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+    // get  classe
+    useEffect(() => {
+        axios
+      .get(`http://localhost:3000/classe/${id}`)
+      .then((res) => {
+        setClasse(res.data);
+        setName(res.data.name)
+        setStartTime(res.data.startTime)
+        setEndTime(res.data.endTime)
+      })
+      .catch((err) => console.log( " connection failed", err.message));
+    }, []);
 
-    axios
-      .post(
-        "http://localhost:3000/classe",
-        {
-          name,
-          day,
-          startTime,
-          endTime,
-          user:user._id,
-          course:courseId,
-        },
-        {
-          headers: {
-            Authorization: "Bearer" + localStorage.getItem("token"),
-          },
-        }
-      )
-      .then((res) =>
-        toast.success(res.data, {
-          position: "top-left",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        })
-      )
-      .catch((err) =>
-        toast.error(err.response.data, {
-          position: "top-left",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        })
-      );
-  };
+const handleSubmit=(e)=>{
+e.preventDefault()
+if(!day){
+  alert("please select day")
+}
+else{
+  axios
+  .put(
+    `http://localhost:3000/classe/${id}`,
+    {
+      name,
+      day,
+      startTime,
+      endTime,
+    },
+    {
+      headers: {
+        Authorization: "Bearer" + localStorage.getItem("token"),
+      },
+    }
+  )
+  .then((res) =>
+    toast.success(res.data, {
+      position: "top-left",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    })
+  )
+  .catch((err) =>
+    toast.error(err.response.data, {
+      position: "top-left",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    })
+  );
+}
 
-  return (
-    <div>
+}
+    return (
+        <div>
       <div className="upcreate">
         {" "}
         <h2>Add New Classe</h2>
@@ -157,28 +171,30 @@ const {courseId}=useParams()
           <div className="timeinput">
             <input
               type="time"
-              name=""
-              id=""
+              name="startTime"
+              id="startTime"
+              value={startTime}
               onChange={(e) => setStartTime(e.target.value)}
             />
             <label htmlFor=""> Ending Time:</label>
             <input
               type="time"
-              name=""
-              id=""
+              name="endTime"
+              id="endTime"
+              value={endTime}
               onChange={(e) => setEndTime(e.target.value)}
             />
           </div>
 
           <button type="submit" className="bluebtn ">
             {" "}
-            Add classe
+            Edit classe
           </button>
         </form>
       </div>
       <ToastContainer
         position="top-left"
-        autoClose={5000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -189,7 +205,7 @@ const {courseId}=useParams()
         theme="dark"
       />
     </div>
-  );
+    );
 };
 
-export default CreateClasse;
+export default EditClasse;

@@ -8,6 +8,7 @@ import { setRole } from "../../Redux/Slices/Authslice";
 const NavBar = () => {
   const dispatch = useDispatch();
   const { isAuth } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
   return (
     <nav className="navbar">
@@ -49,10 +50,10 @@ const NavBar = () => {
             </Link>
           </>
         ) : (
-          <div>hello </div>
+          <div>{user.role.toUpperCase()} </div>
         )}
 
-        <GrLanguage />
+       
       </div>
     </nav>
   );

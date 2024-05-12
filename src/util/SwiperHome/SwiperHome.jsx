@@ -14,7 +14,7 @@ import { EffectCoverflow, Pagination } from 'swiper/modules';
 import CardCourse from '../../Components/CardCourse/CardCourse';
 
 export default function SwiperHome({courses}) {
-    console.log("hhhhhhh",courses);
+   
   return (
     <>
     

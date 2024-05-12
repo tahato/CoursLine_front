@@ -5,8 +5,9 @@
   padding: 15px;
   position: sticky;
   top: 0;
- 
-  background-color: aliceblue;
+  font-size: 17px;
+  background-color: #ffff;
+  z-index: 3;
 }
 .logodiv {
   display: flex;

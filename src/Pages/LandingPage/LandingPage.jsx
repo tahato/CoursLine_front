@@ -55,12 +55,12 @@ const LandingPage = () => {
             {" "}
             <Typewriter text=" COURSELINE connect students with teachers in live sessions and
             online courses for all academic education levels : middle school
-            ,Secondary and university." delay={40} />
+            ,High School and university." delay={40} />
            
           </h1>
         </article>
         {/* ajouter des image top page */}
-        <h1>Boost Your Career Acdemic</h1>
+        <h1 className="sous-titre">Boost Your Acdemic Career</h1>
         <section className="schoolimg">
 
           <div className="school">
@@ -70,7 +70,7 @@ const LandingPage = () => {
               className="imgSchool"
               id="leftimg"
             />
-            <h1>Middle School</h1>
+            <h1>High School</h1>
           </div>
           <div className="school">
             <img
@@ -92,7 +92,7 @@ const LandingPage = () => {
           </div>
         </section>
         <section className="showcousres">
-          <h1>Our courses</h1>
+          <h1 className="sous-titre">Best Courses</h1>
           <SwiperHome courses={courses}></SwiperHome>
         </section>
         <div className="homeIllustrations">

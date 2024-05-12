@@ -5,42 +5,40 @@ import { ImBooks } from "react-icons/im";
 
 import NavBar from "../../Components/Navbar/NavBar";
 import "./Teacher.css";
-import CreateCourse from "../../Components/CreateCourse/CreateCourse";
-import { useState } from "react";
-import CreateClasse from "../../Components/CreateClasse/CreateClasse";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { logout } from "../../Redux/Slices/Authslice";
+import { TbBellSchool } from "react-icons/tb";
+import { setComponent } from "../../Redux/Slices/CourseSlice";
+import { useEffect } from "react";
 const Teacher = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [create, setCreate] = useState("");
   const { user } = useSelector((state) => state.auth);
 
-  const createCourse = () => {
-    setCreate(true);
-  };
-   // logout function
-   const logoutHandle = () => {
+  // logout function
+  const logoutHandle = () => {
     dispatch(logout());
     navigate("/");
   };
+  //   function to change the menu
+  const changeMenu = (m) => {
+    dispatch(setComponent(m));
+  };
+useEffect(() => {
+  navigate("/teacher/myCourses")
+}, []);
 
   return (
     <>
       <NavBar></NavBar>
       <div>
         <div>
-          {create == "createCourse" ? (
-            <CreateCourse ></CreateCourse>
-          ) : create == "createClasse" ? (
-            <CreateClasse></CreateClasse>
-          ) : (
-            <div></div>
-          )}
+          <Outlet />
+        
         </div>
 
-        {/* ..........side bar component ................................... */}
+        {/* ..........sideBar component ................................... */}
         <aside className="sidebar">
           <div className="upSidebare">
             <div className="Name1side1bare">
@@ -50,41 +48,54 @@ const Teacher = () => {
             <div className="imgprofile">{user && user.lastName[0]}</div>
           </div>
           <ul className="sidelist">
-            <li className="listelement">
-              {" "}
-              <ImBooks className="sidebarIcon" />
-              My Courses
-            </li>
-            <li
-              className="listelement"
-              onClick={() => setCreate("createCourse")}
-            >
-              {" "}
-              <ImBooks className="sidebarIcon" />
-              Add Course
-            </li>
+            <Link to={"/teacher/myCourses"} className="sideLink">
+              <li
+                className="listelement"
+                onClick={() => changeMenu("myCourses")}
+              >
+                {" "}
+                <ImBooks className="sidebarIcon" />
+                My Courses
+              </li>
+            </Link>
 
-            <li
-              className="listelement"
-              onClick={() => setCreate("createClasse")}
-            >
-              My clases
-            </li>
+            <Link to={"/teacher/createCourse"} className="sideLink">
+              <li
+                className="listelement"
+                
+              >
+                {" "}
+                <ImBooks className="sidebarIcon" />
+                Add Course
+              </li>
+            </Link>
+
+            <Link to={"/teacher/myClasses"} className="sideLink">
+              <li
+                className="listelement"
+              >
+                <TbBellSchool className="sidebarIcon" />
+                My clases
+              </li>
+            </Link>
           </ul>
           <ul className="sidelist">
+            <NavLink to={'/teacher/profile'} >
             <li className="listelement">
               {" "}
               <CgProfile className="sidebarIcon" />
               Profile
             </li>
 
+            </NavLink>
+          
             <li className="listelement">
               <IoSettings className="sidebarIcon" />
               Settings
             </li>
           </ul>
           <ul className="sidelist">
-            <li className="listelement"  onClick={logoutHandle}>
+            <li className="listelement" onClick={logoutHandle}>
               {" "}
               <RiLogoutBoxFill className="sidebarIcon" />
               Logut

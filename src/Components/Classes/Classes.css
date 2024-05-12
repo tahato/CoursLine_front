@@ -1,0 +1,25 @@
+.upClasse{
+    margin: 10px;
+    padding: 15px;
+    border-bottom: 2px solid black;
+    width: 80%;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 30px;
+  align-items: center;
+  color: blue;
+  gap: 7px;
+}
+ .classeLink{
+    text-decoration: none;
+  color: blue;
+    
+ }
+ .displayError{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    width: 75%;
+  
+ }

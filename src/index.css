@@ -10,6 +10,8 @@ a{
 }
 .lien{   
     transition-duration: 0.5s;
+    color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
    .lien:hover{
      border-bottom: 1px solid blue;
@@ -33,6 +35,7 @@ button:hover{
     color: #ffff;
     padding: 5px;
     text-align: center;
+    font-size: 17px;
 }
 .bluebtn:hover{
     cursor: pointer;
@@ -59,4 +62,8 @@ button:hover{
 .container{
     --color-bg-body: #0000;
     --color-font:#ffff;
+}
+a{
+    text-decoration: none;
+
 }
