@@ -25,7 +25,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/course/")
+      .get("https://courseline-back.onrender.com/course/")
       .then((res) => {
         dispatch(setCourses(res.data.course));
       })

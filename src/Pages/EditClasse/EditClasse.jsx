@@ -15,7 +15,7 @@ const EditClasse = () => {
     // get  classe..........................
     useEffect(() => {
         axios
-      .get(`http://localhost:3000/classe/${id}`)
+      .get(`https://courseline-back.onrender.com/classe/${id}`)
       .then((res) => {
         setClasse(res.data);
         setName(res.data.name)
@@ -34,7 +34,7 @@ if(!day){
 else{
   axios
   .put(
-    `http://localhost:3000/classe/${id}`,
+    `https://courseline-back.onrender.com/classe/${id}`,
     {
       name,
       day,

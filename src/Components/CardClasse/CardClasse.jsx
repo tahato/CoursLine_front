@@ -19,7 +19,7 @@ const CardClasse = ({ classe }) => {
   const navigate = useNavigate();
   const deleteClasse = () => {
     axios
-      .delete(`http://localhost:3000/classe/delete/${classe._id}`)
+      .delete(`https://courseline-back.onrender.com/classe/delete/${classe._id}`)
       .then((res) => {
         console.log(res.data);
         toast.success(res.data, {
@@ -50,7 +50,7 @@ const CardClasse = ({ classe }) => {
   const joinClasse = () => {
     axios
       .put(
-        `http://localhost:3000/user/classe/${user._id}`,
+        `https://courseline-back.onrender.com/user/classe/${user._id}`,
         {
           courseId: classe.course._id,
           classeId: classe._id,
@@ -88,7 +88,7 @@ const CardClasse = ({ classe }) => {
     // add student to courses
     axios
       .put(
-        `http://localhost:3000/course/student/${classe.course._id}`,
+        `https://courseline-back.onrender.com/course/student/${classe.course._id}`,
         {
           userId: user._id
         },
@@ -103,7 +103,7 @@ const CardClasse = ({ classe }) => {
     // add student to classes
     axios
       .put(
-        `http://localhost:3000/classe/student/${classe._id}`,
+        `https://courseline-back.onrender.com/classe/student/${classe._id}`,
         {
           userId: user._id,
         },

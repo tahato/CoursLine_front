@@ -38,7 +38,17 @@ const ResetPassWord = () => {
           />
         </form>
 
-        <button className="bluebtn" on onClick={reset=="send" ? send :reset=="confirm"?confirm:resetPassword}>
+        <button
+          className="bluebtn"
+          on
+          onClick={
+            reset == "send"
+              ? send
+              : reset == "confirm"
+              ? confirm
+              : resetPassword
+          }
+        >
           {reset == "confirm"
             ? " confirm"
             : reset == "send"

@@ -18,7 +18,7 @@ const {courseId}=useParams()
 
     axios
       .post(
-        "http://localhost:3000/classe",
+        "https://courseline-back.onrender.com/classe",
         {
           name,
           day,

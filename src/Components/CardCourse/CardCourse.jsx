@@ -27,7 +27,7 @@ const CardCourse = ({ course }) => {
   // delete Course.......................
   const deleteCourse = () => {
     axios
-      .delete(`http://localhost:3000/course/delete/${course._id}`)
+      .delete(`https://courseline-back.onrender.com/course/delete/${course._id}`)
       .then((res) => {
         console.log(res.data);
         toast.success(res.data, {

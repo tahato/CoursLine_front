@@ -9,7 +9,7 @@ const MyClasses = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/classe/user/${user._id}`)
+      .get(`https://courseline-back.onrender.com/classe/user/${user._id}`)
       .then((res) => {
         setClasses(res.data);
       })

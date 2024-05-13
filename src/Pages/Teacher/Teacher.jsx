@@ -25,9 +25,9 @@ const Teacher = () => {
   const changeMenu = (m) => {
     dispatch(setComponent(m));
   };
-useEffect(() => {
-  navigate("/teacher/myCourses")
-}, []);
+  useEffect(() => {
+    navigate("/teacher/myCourses");
+  }, []);
 
   return (
     <>
@@ -35,7 +35,6 @@ useEffect(() => {
       <div>
         <div>
           <Outlet />
-        
         </div>
 
         {/* ..........sideBar component ................................... */}
@@ -49,10 +48,7 @@ useEffect(() => {
           </div>
           <ul className="sidelist">
             <Link to={"/teacher/allCourses"} className="sideLink">
-              <li
-                className="listelement"
-             
-              >
+              <li className="listelement">
                 {" "}
                 <ImBooks className="sidebarIcon" />
                 All Courses
@@ -70,10 +66,7 @@ useEffect(() => {
             </Link>
 
             <Link to={"/teacher/createCourse"} className="sideLink">
-              <li
-                className="listelement"
-                
-              >
+              <li className="listelement">
                 {" "}
                 <ImBooks className="sidebarIcon" />
                 Add Course
@@ -81,24 +74,20 @@ useEffect(() => {
             </Link>
 
             <Link to={"/teacher/myClasses"} className="sideLink">
-              <li
-                className="listelement"
-              >
+              <li className="listelement">
                 <TbBellSchool className="sidebarIcon" />
                 My clases
               </li>
             </Link>
           </ul>
           <ul className="sidelist">
-            <NavLink to={'/teacher/profile'} >
-            <li className="listelement">
-              {" "}
-              <CgProfile className="sidebarIcon" />
-              Profile
-            </li>
-
+            <NavLink to={"/teacher/profile"}>
+              <li className="listelement">
+                {" "}
+                <CgProfile className="sidebarIcon" />
+                Profile
+              </li>
             </NavLink>
-          
           </ul>
           <ul className="sidelist">
             <li className="listelement" onClick={logoutHandle}>

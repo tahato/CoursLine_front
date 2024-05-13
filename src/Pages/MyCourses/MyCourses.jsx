@@ -13,7 +13,7 @@ const MyCourses = () => {
       setCourses(user.course);
     } else {
       axios
-        .get(`http://localhost:3000/course/user/${user._id}`)
+        .get(`https://courseline-back.onrender.com/course/user/${user._id}`)
         .then((res) => {
           setCourses(res.data);
         })

@@ -39,7 +39,7 @@ console.log(file);
     data.append("image",file[0])
    
     axios
-      .put(`http://localhost:3000/user/${user._id}`, 
+      .put(`https://courseline-back.onrender.com/user/${user._id}`, 
        data,
        {
         headers: {

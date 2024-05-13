@@ -46,7 +46,7 @@ const Login = () => {
     const email = data.get("email");
     const password = data.get("password");
     axios
-      .post("http://localhost:3000/auth/login", {
+      .post("https://courseline-back.onrender.com/auth/login", {
         email,
         password,
       })
