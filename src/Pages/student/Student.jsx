@@ -22,12 +22,12 @@ const Student = () => {
   return (
     <div>
       <NavBar></NavBar>
-     
+
       <div>
-      <Outlet />
-      {/* {menue == "allCourses" ? <AllCourses></AllCourses> : <div></div>} */}
+        <Outlet />
+        {/* {menue == "allCourses" ? <AllCourses></AllCourses> : <div></div>} */}
       </div>
-      
+
       {/* ..........side bar component ................................... */}
       <aside className="sidebar">
         <div className="upSidebare">
@@ -38,35 +38,38 @@ const Student = () => {
           <div className="imgprofile">{user && user.lastName[0]}</div>
         </div>
         <ul className="sidelist">
-          <NavLink to={"allCourses"}  className="sideLink">
-          <li className="listelement" onClick={()=>setMenue("allCourses")}>
-            {" "}
-            <ImBooks className="sidebarIcon" />
-            All Courses
-          </li>
+          <NavLink to={"allCourses"} className="sideLink">
+            <li className="listelement" onClick={() => setMenue("allCourses")}>
+              {" "}
+              <ImBooks className="sidebarIcon" />
+              All Courses
+            </li>
           </NavLink>
-         
-          <Link to={"/student/myCourses"} className="sideLink">
-          <li className="listelement">
-            {" "}
-            <ImBooks className="sidebarIcon" />
-            My Courses
-          </li>
-          </Link>
 
-          <li
-            className="listelement"
-            //   onClick={() => setCreate("createClasse")}
-          >
-            My clases
-          </li>
+          <Link to={"/student/myCourses"} className="sideLink">
+            <li className="listelement">
+              {" "}
+              <ImBooks className="sidebarIcon" />
+              My Courses
+            </li>
+          </Link>
+          <NavLink to={"/student/myClasses"} className="sideLink">
+            <li
+              className="listelement"
+              //   onClick={() => setCreate("createClasse")}
+            >
+              My clases
+            </li>
+          </NavLink>
         </ul>
         <ul className="sidelist">
-          <li className="listelement">
-            {" "}
-            <CgProfile className="sidebarIcon" />
-            Profile
-          </li>
+          <NavLink className="sideLink" to={"./profile"}>
+            <li className="listelement">
+              {" "}
+              <CgProfile className="sidebarIcon" />
+              Profile
+            </li>
+          </NavLink>
         </ul>
         <ul className="sidelist">
           <li className="listelement" onClick={logoutHandle}>

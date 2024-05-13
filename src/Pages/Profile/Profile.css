@@ -1,0 +1,34 @@
+.myProfile {
+  position: relative;
+}
+.bgProfile {
+  width: 100%;
+  height: 130px;
+}
+.bgProfile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.addphoto {
+  border: 1px solid black;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.photoProfile ,.addphoto div{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  object-fit: cover;
+
+}
+

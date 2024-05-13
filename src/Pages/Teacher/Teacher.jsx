@@ -48,6 +48,16 @@ useEffect(() => {
             <div className="imgprofile">{user && user.lastName[0]}</div>
           </div>
           <ul className="sidelist">
+            <Link to={"/teacher/allCourses"} className="sideLink">
+              <li
+                className="listelement"
+             
+              >
+                {" "}
+                <ImBooks className="sidebarIcon" />
+                All Courses
+              </li>
+            </Link>
             <Link to={"/teacher/myCourses"} className="sideLink">
               <li
                 className="listelement"
@@ -89,10 +99,6 @@ useEffect(() => {
 
             </NavLink>
           
-            <li className="listelement">
-              <IoSettings className="sidebarIcon" />
-              Settings
-            </li>
           </ul>
           <ul className="sidelist">
             <li className="listelement" onClick={logoutHandle}>

@@ -12,7 +12,7 @@ const EditClasse = () => {
    const [day,setDay]=useState()
    
 
-    // get  classe
+    // get  classe..........................
     useEffect(() => {
         axios
       .get(`http://localhost:3000/classe/${id}`)
@@ -25,6 +25,7 @@ const EditClasse = () => {
       .catch((err) => console.log( " connection failed", err.message));
     }, []);
 
+// update classe ....................
 const handleSubmit=(e)=>{
 e.preventDefault()
 if(!day){

@@ -19,12 +19,12 @@ import MyCourses from "./Pages/MyCourses/MyCourses.jsx";
 import CreateCourse from "./Pages/CreateCourse/CreateCourse.jsx";
 import MyClasses from "./Pages/MyClasses/MyClasses.jsx";
 import Classes from "./Components/Classes/Classes.jsx";
-import CreateClasse from "./Components/CreateClasse/CreateClasse.jsx";
+import CreateClasse from "./Pages/CreateClasse/CreateClasse.jsx";
 import Meet from "./Pages/Meet/Meet.jsx";
 import AllCourses from "./Pages/AllCourses/AllCourses.jsx";
 import Profile from "./Pages/Profile/Profile.jsx";
 import EditClasse from "./Pages/EditClasse/EditClasse.jsx";
-
+import About from "./Pages/About/About.jsx";
 
 const router = createBrowserRouter([
   {
@@ -59,12 +59,20 @@ const router = createBrowserRouter([
         path: "classes/:courseId",
         element: <Classes />,
       },
+      {
+        path: "myClasses",
+        element: <MyClasses />,
+      },
     ],
   },
   {
     path: "/teacher",
     element: <Teacher />,
     children: [
+      {
+        path: "allCourses",
+        element: <AllCourses />,
+      },
       {
         path: "myCourses",
         element: <MyCourses />,
@@ -104,7 +112,11 @@ const router = createBrowserRouter([
     element: <Contact />,
   },
   {
-    path: "/meet",
+    path: "/about",
+    element: <About />,
+  },
+  {
+    path: "/meet/:classeId",
     element: <Meet />,
   },
 ]);

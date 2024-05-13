@@ -24,6 +24,7 @@ const CardCourse = ({ course }) => {
   const { isAuth } = useSelector((state) => state.auth);
 
   const navigate = useNavigate();
+  // delete Course.......................
   const deleteCourse = () => {
     axios
       .delete(`http://localhost:3000/course/delete/${course._id}`)
@@ -53,6 +54,7 @@ const CardCourse = ({ course }) => {
         });
       });
   };
+  console.log("students", course.students);
 
   return (
     <Card sx={{ maxWidth: 345 }} key={course._id} className="courseCard">
@@ -95,6 +97,7 @@ const CardCourse = ({ course }) => {
           <p>{course.description}</p>
         </Typography>
       </CardContent>
+      {/* display option div for authentified teachers */}
       {isAuth && user._id == course.user._id ? (
         <div className="redirect show">
           <div
@@ -109,16 +112,29 @@ const CardCourse = ({ course }) => {
             </div>
           )}
         </div>
-      ) :isAuth && user.role =="student"&& (
-        <div className="redirect show">
-          <div
-            className="cardIcon"
-            onClick={() => navigate(`/${user.role}/classes/${course._id}`)}
-          >
-            <BiDollar />
+        // display option div for authentified students
+      ) : (
+        isAuth &&
+        user.role == "student" && (
+          <div className="redirect show">
+            {!course.students.includes(user._id) ? (
+              <div
+                className="cardIcon"
+                onClick={() => navigate(`/${user.role}/classes/${course._id}`)}
+              >
+                <BiDollar />
+              </div>
+            ):(
+              <div
+              className="cardIcon"
+              onClick={() => navigate(`/${user.role}/classes/${course._id}`)}
+            >
+              <SiGoogledisplayandvideo360 />
+            </div>
+            )
+          }
           </div>
-        
-        </div>
+        )
       )}
 
       <ToastContainer

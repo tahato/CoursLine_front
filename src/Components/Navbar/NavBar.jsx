@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./NavBar.css";
 import { GrLanguage } from "react-icons/gr";
 import logo from "../../assets/coursline_logo.webp";
@@ -9,7 +9,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const { isAuth } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.auth);
-
+const navigate=useNavigate()
   return (
     <nav className="navbar">
       <div className="navleft">
@@ -50,7 +50,12 @@ const NavBar = () => {
             </Link>
           </>
         ) : (
-          <div>{user.role.toUpperCase()} </div>
+          <div className="rightNav">
+          <h3>{user.role.toUpperCase()}</h3>
+          <div onClick={()=>navigate(`/${user.role}/allCourses`)}>
+            {user.lastName[0].toUpperCase()+user.firstName[0].toUpperCase()}
+          </div>
+           </div>
         )}
 
        

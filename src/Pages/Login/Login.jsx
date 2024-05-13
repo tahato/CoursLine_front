@@ -128,10 +128,10 @@ const Login = () => {
                   </Button>
                   <Grid container>
                     <Grid item xs>
-                      <Link to={"/resetpassword"}>Forgot password?</Link>
+                      {/* <Link to={"/resetpassword"}>Forgot password?</Link> */}
                     </Grid>
                     <Grid item>
-                      <Link to={"/register"}>
+                      <Link to={"/"}>
                         {"Don't have an account? Sign Up"}
                       </Link>
                     </Grid>

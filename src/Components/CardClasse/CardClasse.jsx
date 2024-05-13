@@ -46,6 +46,76 @@ const CardClasse = ({ classe }) => {
         });
       });
   };
+  // add a student for a classe
+  const joinClasse = () => {
+    axios
+      .put(
+        `http://localhost:3000/user/classe/${user._id}`,
+        {
+          courseId: classe.course._id,
+          classeId: classe._id,
+        },
+        {
+          headers: {
+            Authorization: "Bearer" + localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((res) =>
+        toast.success(res.data, {
+          position: "top-left",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        })
+      )
+      .catch((err) =>
+        toast.error(err.response.data, {
+          position: "top-left",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        })
+      );
+    // add student to courses
+    axios
+      .put(
+        `http://localhost:3000/course/student/${classe.course._id}`,
+        {
+          userId: user._id
+        },
+        {
+          headers: {
+            Authorization: "Bearer" + localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err.data));
+    // add student to classes
+    axios
+      .put(
+        `http://localhost:3000/classe/student/${classe._id}`,
+        {
+          userId: user._id,
+        },
+        {
+          headers: {
+            Authorization: "Bearer" + localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err.data));
+  };
 
   return (
     <Card sx={{ maxWidth: 345 }} key={classe._id} className="courseCard">
@@ -77,7 +147,7 @@ const CardClasse = ({ classe }) => {
           <div
             id="show"
             className="cardIcon show"
-            onClick={() => navigate(`/meet`)}
+            onClick={() => navigate(`/meet/${classe._id}`)}
           >
             <SiGoogledisplayandvideo360 />
           </div>
@@ -93,7 +163,24 @@ const CardClasse = ({ classe }) => {
           </div>
         </div>
       ) : (
-        <div></div>
+        isAuth &&
+        user.role == "student" && (
+          <div className="redirect">
+            {!classe.user.includes(user._id) ? (
+              <button className="btn" onClick={joinClasse}>
+                Join the classe
+              </button>
+            ) : (
+              <div
+                id="show"
+                className="cardIcon show"
+                onClick={() => navigate(`/meet/${classe._id}`)}
+              >
+                <SiGoogledisplayandvideo360 />
+              </div>
+            )}
+          </div>
+        )
       )}
 
       <ToastContainer
