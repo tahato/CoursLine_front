@@ -15,7 +15,7 @@ const EditClasse = () => {
     // get  classe..........................
     useEffect(() => {
         axios
-      .get(`https://courseline-back.onrender.com/classe/${id}`)
+      .get(`${import.meta.env.VITE_URL}/classe/${id}`)
       .then((res) => {
         setClasse(res.data);
         setName(res.data.name)

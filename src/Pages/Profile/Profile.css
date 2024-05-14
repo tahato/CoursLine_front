@@ -21,6 +21,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("../../assets/pimg.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
 
 }
 
@@ -31,4 +34,11 @@
   object-fit: cover;
 
 }
+.addPhbtn{
+  position: absolute;
+ bottom: 40px;
+ left: 50px;
+font-size: 30px;
+}
+
 

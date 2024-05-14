@@ -19,7 +19,7 @@ console.log(user);
     event.preventDefault();
 
     axios
-      .post("https://courseline-back.onrender.com/course/create", {
+      .post(`${import.meta.env.VITE_URL}/course/create`, {
         school,
         category,
         level,

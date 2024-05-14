@@ -33,7 +33,7 @@ const Meet = () => {
     e.preventDefault();
     axios
       .put(
-        `https://courseline-back.onrender.com/classe/link/${classeId}`,
+        `${import.meta.env.VITE_URL}/classe/link/${classeId}`,
         {
           url: inputMeetUrl,
         },

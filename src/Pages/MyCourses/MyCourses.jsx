@@ -13,7 +13,7 @@ const MyCourses = () => {
       setCourses(user.course);
     } else {
       axios
-        .get(`https://courseline-back.onrender.com/course/user/${user._id}`)
+        .get(`${import.meta.env.VITE_URL}/course/user/${user._id}`)
         .then((res) => {
           setCourses(res.data);
         })
@@ -21,13 +21,20 @@ const MyCourses = () => {
     }
   }, []);
   return (
-    <div>
+    <>
+    {courses?.length==0 ? (
+     <div className="displayError"> <h1>No Classes</h1> </div>
+
+    ):(
       <div className="courseContainer">
-        {courses?.map((course) => (
-          <CardCourse key={course._id} course={course}></CardCourse>
-        ))}
-      </div>
+      {courses?.map((course) => (
+        <CardCourse key={course._id} course={course}></CardCourse>
+      ))}
     </div>
+    )}
+    
+    </>
+    
   );
 };
 

@@ -3,7 +3,7 @@
     width: 30%;
     height: 50%;
     margin-top: 2%;
-    margin-left: 20%;
+    margin-left: 15%;
     font-size: 27px;
     letter-spacing: 1px;
     color: white;
@@ -34,4 +34,9 @@
     right: 10%;
     border-radius: 30px;
    
+}
+.allAbout{
+    background-image: url("../../assets/bgNav.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
 }

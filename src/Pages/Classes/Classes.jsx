@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import CardClasse from "../CardClasse/CardClasse";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { IoMdAddCircleOutline } from "react-icons/io";
 
 import "./Classes.css";
+import CardClasse from "../../Components/CardClasse/CardClasse";
 const Classes = () => {
   const [classes, setClasses] = useState();
   const { courseId } = useParams();
@@ -15,7 +15,7 @@ const Classes = () => {
 
   useEffect(() => {
     axios
-      .get(`https://courseline-back.onrender.com/classe/course?courseId=${courseId}`)
+      .get(`${import.meta.env.VITE_URL}/classe/course?courseId=${courseId}`)
       .then((res) => {
         setClasses(res.data);
       })
@@ -38,13 +38,18 @@ const Classes = () => {
         </div>
       )}
 
-      <div className="displayError">{err}</div>
-
-      <div className="courseContainer">
-        {classes?.map((classe) => (
-          <CardClasse classe={classe} key={classe._id}></CardClasse>
-        ))}
-      </div>
+      {!classes ? (
+        <div className="displayError">
+          {" "}
+          <h1>{err}</h1>
+        </div>
+      ) : (
+        <div className="courseContainer">
+          {classes?.map((classe) => (
+            <CardClasse classe={classe} key={classe._id}></CardClasse>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

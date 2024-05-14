@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCourses } from "../../Redux/Slices/CourseSlice";
-import SlideHome from "../../Components/SlideHome/SlideHome";
 import Mschool from "../../assets/Mschool.webp";
 import secondary from "../../assets/secondary.webp";
 import university from "../../assets/university.webp";
@@ -25,7 +24,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     axios
-      .get("https://courseline-back.onrender.com/course/")
+      .get(`${import.meta.env.VITE_URL}/course`)
       .then((res) => {
         dispatch(setCourses(res.data.course));
       })

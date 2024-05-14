@@ -52,7 +52,7 @@ const Register = () => {
     const password = data.get("password");
    
     axios
-      .post("https://courseline-back.onrender.com/auth/register", {
+      .post(`${import.meta.env.VITE_URL}/auth/register`, {
         firstName,
         lastName,
         email,

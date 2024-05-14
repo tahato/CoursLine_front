@@ -40,7 +40,7 @@ const AllCourses = () => {
   // ........................get All Courses From Database..................................
   useEffect(() => {
     axios
-      .get(`https://courseline-back.onrender.com/course?page=${page}`)
+      .get(`${import.meta.env.VITE_URL}/course?page=${page}`)
       .then((res) => {
         setCourses(res.data.course);
         setTotalPages(res.data.totalPages);
@@ -51,7 +51,7 @@ const AllCourses = () => {
   // ...........get all modules avilabe in database to the search bar.....................
   useEffect(() => {
     axios
-      .get(`https://courseline-back.onrender.com0/course/module`)
+      .get(`${import.meta.env.VITE_URL}/course/module`)
       .then((res) => {
         setModule(res.data);
       })

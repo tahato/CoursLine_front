@@ -18,7 +18,7 @@ import Teacher from "./Pages/Teacher/Teacher.jsx";
 import MyCourses from "./Pages/MyCourses/MyCourses.jsx";
 import CreateCourse from "./Pages/CreateCourse/CreateCourse.jsx";
 import MyClasses from "./Pages/MyClasses/MyClasses.jsx";
-import Classes from "./Components/Classes/Classes.jsx";
+import Classes from "./Pages/Classes/Classes.jsx";
 import CreateClasse from "./Pages/CreateClasse/CreateClasse.jsx";
 import Meet from "./Pages/Meet/Meet.jsx";
 import AllCourses from "./Pages/AllCourses/AllCourses.jsx";

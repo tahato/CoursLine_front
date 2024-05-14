@@ -18,7 +18,7 @@ const {courseId}=useParams()
 
     axios
       .post(
-        "https://courseline-back.onrender.com/classe",
+        `${import.meta.env.VITE_URL}/classe`,
         {
           name,
           day,

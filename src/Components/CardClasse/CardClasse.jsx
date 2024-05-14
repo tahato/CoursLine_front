@@ -19,10 +19,10 @@ const CardClasse = ({ classe }) => {
   const navigate = useNavigate();
   const deleteClasse = () => {
     axios
-      .delete(`https://courseline-back.onrender.com/classe/delete/${classe._id}`)
+      .delete(`${import.meta.env.VITE_URL}/classe/delete/${classe._id}`)
       .then((res) => {
         console.log(res.data);
-        toast.success(res.data, {
+        toast.success(res.data.message, {
           position: "top-left",
           autoClose: 5000,
           hideProgressBar: false,
@@ -50,7 +50,7 @@ const CardClasse = ({ classe }) => {
   const joinClasse = () => {
     axios
       .put(
-        `https://courseline-back.onrender.com/user/classe/${user._id}`,
+        `${import.meta.env.VITE_URL}/user/classe/${user._id}`,
         {
           courseId: classe.course._id,
           classeId: classe._id,
@@ -88,7 +88,7 @@ const CardClasse = ({ classe }) => {
     // add student to courses
     axios
       .put(
-        `https://courseline-back.onrender.com/course/student/${classe.course._id}`,
+        `${import.meta.env.VITE_URL}/course/student/${classe.course._id}`,
         {
           userId: user._id
         },
@@ -103,7 +103,7 @@ const CardClasse = ({ classe }) => {
     // add student to classes
     axios
       .put(
-        `https://courseline-back.onrender.com/classe/student/${classe._id}`,
+        `${import.meta.env.VITE_URL}/classe/student/${classe._id}`,
         {
           userId: user._id,
         },
@@ -120,11 +120,7 @@ const CardClasse = ({ classe }) => {
   return (
     <Card sx={{ maxWidth: 345 }} key={classe._id} className="courseCard">
       <CardHeader
-        //   action={
-        //     <IconButton aria-label="settings">
-        //       <MoreVertIcon />
-        //     </IconButton>
-        //   }
+      
         title={classe.name}
         //   subheader={course.user.role.toUpperCase()}
       />
@@ -158,7 +154,7 @@ const CardClasse = ({ classe }) => {
           >
             <RiEdit2Fill />
           </div>
-          <div className="cardIcon" id="delete" onClick={deleteClasse}>
+          <div className="cardIcon delete "  onClick={deleteClasse}>
             <IoTrashBinSharp />
           </div>
         </div>

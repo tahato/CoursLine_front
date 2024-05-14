@@ -46,7 +46,7 @@ const Login = () => {
     const email = data.get("email");
     const password = data.get("password");
     axios
-      .post("https://courseline-back.onrender.com/auth/login", {
+      .post(`${import.meta.env.VITE_URL}/auth/login`, {
         email,
         password,
       })
@@ -54,7 +54,7 @@ const Login = () => {
         dispatch(login(res.data.user));
         const role = res.data.user.role;
         localStorage.setItem("token", res.data.token);
-        navigate(`/${role}`);
+        navigate(`/${role}/allCourses`);
       })
       .catch((err) => {
         toast.error(err.response.data, {

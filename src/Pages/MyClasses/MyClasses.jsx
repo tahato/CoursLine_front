@@ -9,18 +9,28 @@ const MyClasses = () => {
 
   useEffect(() => {
     axios
-      .get(`https://courseline-back.onrender.com/classe/user/${user._id}`)
+      .get(`${import.meta.env.VITE_URL}/classe/user/${user._id}`)
       .then((res) => {
         setClasses(res.data);
       })
       .catch((err) => console.log("connection failed", err.message));
   }, []);
+  
   return (
-    <div className="courseContainer">
-        {classes?.map((classe) => (
-          <CardClasse classe={classe} key={classe._id}></CardClasse>
-        ))}
-    </div>
+    <>
+    {classes?.length==0 ? (
+     <div className="displayError"> <h1>No Classes</h1> </div>
+
+    ):(
+      <div className="courseContainer">
+      {classes?.map((classe) => (
+        <CardClasse classe={classe} key={classe._id}></CardClasse>
+      ))}
+  </div>
+    )}
+    
+    </>
+   
   );
 };
 

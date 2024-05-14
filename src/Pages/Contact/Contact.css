@@ -4,6 +4,9 @@
   align-items: center;
   height: 90vh;
   gap: 50px;
+  background-image: url("../../assets/bgNav1.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .leftContact {
   display: flex;

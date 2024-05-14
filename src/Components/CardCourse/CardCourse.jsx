@@ -27,7 +27,7 @@ const CardCourse = ({ course }) => {
   // delete Course.......................
   const deleteCourse = () => {
     axios
-      .delete(`https://courseline-back.onrender.com/course/delete/${course._id}`)
+      .delete(`${import.meta.env.VITE_URL}/course/delete/${course._id}`)
       .then((res) => {
         console.log(res.data);
         toast.success(res.data, {
@@ -61,7 +61,11 @@ const CardCourse = ({ course }) => {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {course.user.firstName[0].toUpperCase()}
+            {course.user.image ? (
+              <img src={course.user.image} alt="" className="cardPhoto"/>
+            ) : (
+              course.user.firstName[0].toUpperCase()
+            )}
           </Avatar>
         }
         action={
@@ -112,8 +116,8 @@ const CardCourse = ({ course }) => {
             </div>
           )}
         </div>
-        // display option div for authentified students
       ) : (
+        // display option div for authentified students
         isAuth &&
         user.role == "student" && (
           <div className="redirect show">
@@ -124,15 +128,14 @@ const CardCourse = ({ course }) => {
               >
                 <BiDollar />
               </div>
-            ):(
+            ) : (
               <div
-              className="cardIcon"
-              onClick={() => navigate(`/${user.role}/classes/${course._id}`)}
-            >
-              <SiGoogledisplayandvideo360 />
-            </div>
-            )
-          }
+                className="cardIcon"
+                onClick={() => navigate(`/${user.role}/classes/${course._id}`)}
+              >
+                <SiGoogledisplayandvideo360 />
+              </div>
+            )}
           </div>
         )
       )}
