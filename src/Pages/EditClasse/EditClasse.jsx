@@ -34,7 +34,7 @@ if(!day){
 else{
   axios
   .put(
-    `https://courseline-back.onrender.com/classe/${id}`,
+    `${import.meta.env.VITE_URL}/classe/${id}`,
     {
       name,
       day,
@@ -43,7 +43,7 @@ else{
     },
     {
       headers: {
-        Authorization: "Bearer" + localStorage.getItem("token"),
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
     }
   )

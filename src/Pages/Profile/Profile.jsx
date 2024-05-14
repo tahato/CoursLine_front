@@ -48,11 +48,12 @@ const Profile = () => {
     data.append("adresse", adresse);
     data.append("birthday", birth);
     data.append("description", desc);
-    data.append("image", file[0]);
+    data.append("image", file[0]?file[0]:image);
 
     axios
       .put(`${import.meta.env.VITE_URL}/user/${user._id}`, data, {
         headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
           "content-type": "multipart/form-data",
         },
       })

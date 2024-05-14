@@ -25,6 +25,7 @@ import AllCourses from "./Pages/AllCourses/AllCourses.jsx";
 import Profile from "./Pages/Profile/Profile.jsx";
 import EditClasse from "./Pages/EditClasse/EditClasse.jsx";
 import About from "./Pages/About/About.jsx";
+import MainCourses from "./Pages/MainCourses/MainCourses.jsx";
 
 const router = createBrowserRouter([
   {
@@ -118,6 +119,16 @@ const router = createBrowserRouter([
   {
     path: "/meet/:classeId",
     element: <Meet />,
+  },
+  {
+    path: "mainCourses",
+    element: <MainCourses />,
+    children:[
+      {
+        path: "allCourses",
+        element: <AllCourses />,
+      },
+    ]
   },
 ]);
 

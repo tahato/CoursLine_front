@@ -13,7 +13,13 @@ const MyCourses = () => {
       setCourses(user.course);
     } else {
       axios
-        .get(`${import.meta.env.VITE_URL}/course/user/${user._id}`)
+        .get(`${import.meta.env.VITE_URL}/course/user/${user._id}`,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+        )
         .then((res) => {
           setCourses(res.data);
         })

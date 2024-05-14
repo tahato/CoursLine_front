@@ -27,11 +27,12 @@ console.log(user);
         price,
         description,
         user:user._id
-      },{
+      }, {
         headers: {
-            'Authorization': 'Bearer'+localStorage.getItem("token")
-    
-        }})
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    )
       .then((res) =>
         toast.success(res.data, {
           position: "top-left",

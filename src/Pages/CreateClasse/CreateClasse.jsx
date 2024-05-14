@@ -29,7 +29,7 @@ const {courseId}=useParams()
         },
         {
           headers: {
-            Authorization: "Bearer" + localStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         }
       )
@@ -45,17 +45,17 @@ const {courseId}=useParams()
           theme: "dark",
         })
       )
-      .catch((err) =>
-        toast.error(err.response.data, {
-          position: "top-left",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        })
+      .catch((err) =>console.log(err)
+        // toast.error(err.response.data, {
+        //   position: "top-left",
+        //   autoClose: 5000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // })
       );
   };
 

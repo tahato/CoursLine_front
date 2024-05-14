@@ -10,7 +10,6 @@ import Stack from "@mui/material/Stack";
 import "./AllCourses.css";
 import CardCourse from "../../Components/CardCourse/CardCourse";
 
-
 const AllCourses = () => {
   const [courses, setCourses] = useState([]);
   const [module, setModule] = useState();
@@ -19,8 +18,7 @@ const AllCourses = () => {
 
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  
- 
+
   const filteredCourses =
     search === ""
       ? courses
@@ -45,7 +43,7 @@ const AllCourses = () => {
         setCourses(res.data.course);
         setTotalPages(res.data.totalPages);
       })
-      .catch((err) => console.log( " Course  connection failed", err.message));
+      .catch((err) => console.log(" Course  connection failed", err.message));
   }, [page]);
 
   // ...........get all modules avilabe in database to the search bar.....................
@@ -57,7 +55,6 @@ const AllCourses = () => {
       })
       .catch((err) => console.log("Module connection failed", err.message));
   }, []);
- 
 
   useEffect(() => {
     module?.map((module, index) => {
@@ -67,8 +64,7 @@ const AllCourses = () => {
 
   // ...............handle search Bar functions...........................
   const handleOnSearch = (string, results) => {
-    if (string=="")setSearch(string)
-
+    if (string == "") setSearch(string);
   };
 
   const handleOnSelect = (item) => {
@@ -78,7 +74,6 @@ const AllCourses = () => {
 
   return (
     <div>
-
       {/* search bar ............... */}
       <div className="search-bar-container">
         <ReactSearchAutocomplete

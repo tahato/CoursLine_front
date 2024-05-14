@@ -35,13 +35,13 @@ const Student = () => {
             <h5>{user && user.lastName}</h5>
             <h5>{user && user.firstName}</h5>
           </div>
-          <div className="imgprofile">{
-          user.image?
-          <img src={user.image} alt="profile" className="cardPhoto" />
-          :
-          user && user.lastName[0]
-          
-          }</div>
+          <div className="imgprofile">
+            {user.image ? (
+              <img src={user.image} alt="profile" className="cardPhoto" />
+            ) : (
+              user && user.lastName[0]
+            )}
+          </div>
         </div>
         <ul className="sidelist">
           <NavLink to={"allCourses"} className="sideLink">

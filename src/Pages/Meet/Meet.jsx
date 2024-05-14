@@ -19,7 +19,13 @@ const Meet = () => {
     });
 
     if (user.role == "student") {
-      axios.get(`http://localhost:3000/classe/${classeId}`).then((res) => {
+      axios.get(`http://localhost:3000/classe/${classeId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+      ).then((res) => {
         setLien(res.data.roomUrl);
       });
     } else {

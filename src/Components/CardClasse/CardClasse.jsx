@@ -19,7 +19,13 @@ const CardClasse = ({ classe }) => {
   const navigate = useNavigate();
   const deleteClasse = () => {
     axios
-      .delete(`${import.meta.env.VITE_URL}/classe/delete/${classe._id}`)
+      .delete(`${import.meta.env.VITE_URL}/classe/delete/${classe._id}`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+      )
       .then((res) => {
         console.log(res.data);
         toast.success(res.data.message, {
@@ -57,7 +63,7 @@ const CardClasse = ({ classe }) => {
         },
         {
           headers: {
-            Authorization: "Bearer" + localStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         }
       )
@@ -90,11 +96,11 @@ const CardClasse = ({ classe }) => {
       .put(
         `${import.meta.env.VITE_URL}/course/student/${classe.course._id}`,
         {
-          userId: user._id
+          userId: user._id,
         },
         {
           headers: {
-            Authorization: "Bearer" + localStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         }
       )
@@ -109,7 +115,7 @@ const CardClasse = ({ classe }) => {
         },
         {
           headers: {
-            Authorization: "Bearer" + localStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         }
       )
@@ -120,7 +126,6 @@ const CardClasse = ({ classe }) => {
   return (
     <Card sx={{ maxWidth: 345 }} key={classe._id} className="courseCard">
       <CardHeader
-      
         title={classe.name}
         //   subheader={course.user.role.toUpperCase()}
       />
@@ -154,7 +159,7 @@ const CardClasse = ({ classe }) => {
           >
             <RiEdit2Fill />
           </div>
-          <div className="cardIcon delete "  onClick={deleteClasse}>
+          <div className="cardIcon delete " onClick={deleteClasse}>
             <IoTrashBinSharp />
           </div>
         </div>

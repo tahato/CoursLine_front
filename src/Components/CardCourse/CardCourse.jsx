@@ -27,7 +27,13 @@ const CardCourse = ({ course }) => {
   // delete Course.......................
   const deleteCourse = () => {
     axios
-      .delete(`${import.meta.env.VITE_URL}/course/delete/${course._id}`)
+      .delete(`${import.meta.env.VITE_URL}/course/delete/${course._id}`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+      )
       .then((res) => {
         console.log(res.data);
         toast.success(res.data, {

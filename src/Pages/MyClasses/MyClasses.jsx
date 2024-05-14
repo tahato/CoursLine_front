@@ -9,7 +9,13 @@ const MyClasses = () => {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_URL}/classe/user/${user._id}`)
+      .get(`${import.meta.env.VITE_URL}/classe/user/${user._id}`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+      )
       .then((res) => {
         setClasses(res.data);
       })

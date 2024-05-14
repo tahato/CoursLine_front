@@ -17,6 +17,7 @@ import secondary from "../../assets/secondary.webp";
 import university from "../../assets/university.webp";
 import SwiperHome from "../../util/SwiperHome/SwiperHome";
 import Typewriter from "../../util/Typewriter"
+import { Link } from "react-router-dom";
 const LandingPage = () => {
   // const { courses } = useSelector((state) => state.course);
   const dispatch = useDispatch();
@@ -94,6 +95,9 @@ const LandingPage = () => {
           <h1 className="sous-titre">Best Courses</h1>
           <SwiperHome courses={courses}></SwiperHome>
         </section>
+        <div className="showAll">
+          <Link to={'mainCourses/allCourses'}  className="classeLink ">Show All Courses... </Link>
+        </div>
         <div className="homeIllustrations">
           <article className="description_article">
             <div>
