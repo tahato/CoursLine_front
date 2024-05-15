@@ -13,21 +13,21 @@ const Meet = () => {
   const [inputMeetUrl, setInputMeetUrl] = useState("");
   const [lien, setLien] = useState();
   useEffect(() => {
-    axios.get("http://localhost:3000/meet").then((res) => {
+    axios.get(`${import.meta.env.VITE_URL}/meet`).then((res) => {
       setWherebyRoomUrl(res.data.roomUrl);
       setWherebyHostRoomUrl(res.data.hosturl);
     });
 
     if (user.role == "student") {
-      axios.get(`http://localhost:3000/classe/${classeId}`,
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      }
-      ).then((res) => {
-        setLien(res.data.roomUrl);
-      });
+      axios
+        .get(`${import.meta.env.VITE_URL}/classe/${classeId}`, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+        .then((res) => {
+          setLien(res.data.roomUrl);
+        });
     } else {
       setLien(wherebyhostroomUrl);
     }
@@ -43,10 +43,10 @@ const Meet = () => {
         {
           url: inputMeetUrl,
         },
-        
+
         {
           headers: {
-            Authorization: "Bearer" + localStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         }
       )
@@ -67,48 +67,52 @@ const Meet = () => {
 
   return (
     <>
-    <NavBar></NavBar>
-    <div className="startMeet">
-      {user.role == "teacher" && (
-        <>
-          <h1>Put youe GoogleMeet Link</h1>
-          <form
-            action=""
-            on
-            onSubmit={(e) => handleSubmit(e)}
-            className="meetForm"
-          >
-            <input
-              type="text"
-              placeholder="enter meet Link"
-              className="meetInput"
-              onChange={(e) => setInputMeetUrl(e.target.value)}
-            />
-            <button type="submit" className="bluebtn">
-              Share Link
-            </button>
-          </form>
-          <h3>ــ OR start classe with WHERBY ــ </h3>
-        </>
-      )}
+      <NavBar></NavBar>
+      <div className="startMeet">
+        {user.role == "teacher" && (
+          <>
+            <h1>Put youe GoogleMeet Link</h1>
+            <form
+              action=""
+              on
+              onSubmit={(e) => handleSubmit(e)}
+              className="meetForm"
+            >
+              <input
+                type="text"
+                placeholder="enter meet Link"
+                className="meetInput"
+                onChange={(e) => setInputMeetUrl(e.target.value)}
+              />
+              <button type="submit" className="bluebtn">
+                Share Link
+              </button>
+            </form>
+            <h3>ــ OR start classe with WHERBY ــ </h3>
+          </>
+        )}
 
-      <a href={!lien||lien==""? wherebyRoomUrl:lien} className="bluebtn" target="blank">
-        start classe
-      </a>
+        <a
+          href={!lien || lien == "" ? wherebyRoomUrl : lien}
+          className="bluebtn"
+          target="blank"
+        >
+          start classe
+        </a>
 
-      <ToastContainer
-        position="top-left"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
-    </div>
+        <ToastContainer
+          position="top-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+      </div>
     </>
   );
 };

@@ -48,7 +48,7 @@ const Profile = () => {
     data.append("adresse", adresse);
     data.append("birthday", birth);
     data.append("description", desc);
-    data.append("image", file[0]?file[0]:image);
+    data.append("image", file[0] ? file[0] : image);
 
     axios
       .put(`${import.meta.env.VITE_URL}/user/${user._id}`, data, {
@@ -94,9 +94,7 @@ const Profile = () => {
         </div>
         <div className="infoProfile"></div>
         {photo.length == 0 ? (
-          
-            <img src={image} alt="" className="addphoto" />
-          
+          <img src={image} alt="" className="addphoto" />
         ) : (
           <div className="addphoto">{photo}</div>
         )}
