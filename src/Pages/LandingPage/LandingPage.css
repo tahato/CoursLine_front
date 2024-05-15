@@ -104,18 +104,12 @@ text-align: center;
   cursor: pointer;
 
 }
-#leftimg:hover{
-  scale: 1.1;
-  rotate: -11deg;
-}
-#middleimg:hover{
+
+.imgSchool:hover{
   scale: 1.1;
  
 }
-#rightimg:hover{
-  scale: 1.1;
-  rotate: 11deg;
-}
+
 .sous-titre{
   margin-left: 30px;
   font-size: 30px;

@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import emailjs from "emailjs-com";
 import NavBar from "../../Components/Navbar/NavBar";
 import "./Contact.css";
+import Footer from "../../Components/footer/Footer";
 import { ToastContainer, toast } from "react-toastify";
 const Contact = () => {
   const formRef = useRef(null);
@@ -11,26 +12,30 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await emailjs.sendForm(
-        "service_l437khh",
-        "template_3tv4x77",
-        formRef.current,
-        "xqAhi42zOToyHnvkC"
-      )
-      .then(() => {
-        toast.success("message sent", {
-          position: "top-left",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        })
-    }, (error) => {
-        console.log('FAILED...', error);
-    })
+      await emailjs
+        .sendForm(
+          "service_l437khh",
+          "template_3tv4x77",
+          formRef.current,
+          "xqAhi42zOToyHnvkC"
+        )
+        .then(
+          () => {
+            toast.success("message sent", {
+              position: "top-left",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            });
+          },
+          (error) => {
+            alert("FAILED...", error);
+          }
+        );
       formRef.current.reset();
       setEmail("");
       setName("");
@@ -42,6 +47,7 @@ const Contact = () => {
   return (
     <>
       <NavBar></NavBar>
+      <div className="allContact">
       <div className="contactContainer">
         <div className="leftContact">
           <h1>Contact us</h1>
@@ -67,6 +73,7 @@ const Contact = () => {
                 type="text"
                 name="name"
                 id="name"
+                required
                 placeholder="FullName"
               />
             </div>
@@ -78,7 +85,7 @@ const Contact = () => {
                 type="email"
                 name="email"
                 placeholder="Email"
-                
+                required
               />
             </div>
           </div>
@@ -100,6 +107,9 @@ const Contact = () => {
         pauseOnHover
         theme="dark"
       />
+      <Footer></Footer>
+
+      </div>
     </>
   );
 };

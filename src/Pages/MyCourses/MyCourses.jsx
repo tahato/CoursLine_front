@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CardCourse from "../../Components/CardCourse/CardCourse";
-import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 const MyCourses = () => {
   const user = useSelector((state) => state.auth?.user);
@@ -29,7 +28,7 @@ const MyCourses = () => {
   return (
     <>
     {courses?.length==0 ? (
-     <div className="displayError"> <h1>No Classes</h1> </div>
+     <div className="displayError"> <h1>No Courses</h1> </div>
 
     ):(
       <div className="courseContainer">

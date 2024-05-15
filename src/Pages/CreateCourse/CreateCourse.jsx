@@ -5,34 +5,36 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 const CreateCourse = () => {
   const { user } = useSelector((state) => state.auth);
-console.log(user);
+  console.log(user);
   const [school, setSchool] = useState("");
   const [module, setModule] = useState("");
   const [level, setLevel] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  console.log(category);
 
   // create a course ...........................
   const handleSubmit = (event) => {
     event.preventDefault();
 
     axios
-      .post(`${import.meta.env.VITE_URL}/course/create`, {
-        school,
-        category,
-        level,
-        module,
-        price,
-        description,
-        user:user._id
-      }, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
+      .post(
+        `${import.meta.env.VITE_URL}/course/create`,
+        {
+          school,
+          category,
+          level,
+          module,
+          price,
+          description,
+          user: user._id,
         },
-      }
-    )
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
       .then((res) =>
         toast.success(res.data, {
           position: "top-left",
@@ -57,6 +59,12 @@ console.log(user);
           theme: "dark",
         })
       );
+    setSchool("");
+    setModule("");
+    setLevel("");
+    setPrice("");
+    setCategory("");
+    setDescription("");
   };
 
   return (
@@ -73,8 +81,8 @@ console.log(user);
           <label htmlFor="">Price:</label>
           <label htmlFor="">Description: </label>
         </div>
-        <form action="" className="rightForm" onSubmit={(e)=>(handleSubmit(e))}>
-          <select name="school" onChange={(e) => setSchool(e.target.value)}>
+        <form action="" className="rightForm" onSubmit={(e) => handleSubmit(e)}>
+          <select name="school"value={school}  onChange={(e) => setSchool(e.target.value)}>
             <option value="Middle Schoo">Middle School</option>
             <option value="Secondary School">Secondary School</option>
             <option value="University">University</option>
@@ -82,11 +90,13 @@ console.log(user);
           <input
             type="text"
             placeholder="Enter speciality"
+            value={category}
             onChange={(e) => setCategory(e.target.value)}
           />
           <select
             name="level"
             id="level"
+            value={level}
             onChange={(e) => setLevel(e.target.value)}
           >
             <option value="1st year">1st year</option>
@@ -95,6 +105,7 @@ console.log(user);
             <option value="4th yaer"> 4th yaer</option>
           </select>
           <input
+          value={module}
             type="text"
             placeholder="Mathematique"
             name="module"
@@ -104,6 +115,7 @@ console.log(user);
             type="text"
             placeholder=""
             name="price"
+            value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
           <textarea
@@ -111,6 +123,7 @@ console.log(user);
             id=""
             cols="30"
             rows="7"
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <button type="submit" className="bluebtn ">

@@ -19,9 +19,9 @@ const footer = () => {
           </p>
         </div>
         <div className="rightfooter">
-            <Link>About</Link>
+            <Link to={'/about'}>About</Link>
             <Link>Licence</Link>
-            <Link>Contact us</Link>
+            <Link to={'/contact'}>Contact us</Link>
         </div>
       </div>
       <div className="downfooter">

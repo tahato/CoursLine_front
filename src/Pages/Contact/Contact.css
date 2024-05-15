@@ -2,8 +2,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 85vh;
   gap: 50px;
+ 
+}
+.allContact{
   background-image: url("../../assets/bgNav1.webp");
   background-repeat: no-repeat;
   background-size: cover;

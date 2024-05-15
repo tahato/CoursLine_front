@@ -11,7 +11,7 @@ const Profile = () => {
   const [tel, setTel] = useState();
   const [adresse, setAdresse] = useState();
   const [birth, setBirth] = useState();
-  const [desc, setDesc] = useState();
+  const [desc, setDesc] = useState("");
   const [image, setImage] = useState();
 
   useEffect(() => {
@@ -40,7 +40,6 @@ const Profile = () => {
   const photo = file.map((file) => (
     <img src={file.preview} alt={file.name} className="photoProfile" />
   ));
-  console.log("ppppppppppppppp", photo);
   const handleSubmit = (e) => {
     e.preventDefault();
     let data = new FormData();
@@ -121,18 +120,21 @@ const Profile = () => {
             type="date"
             name="birthday"
             value={birth}
-            id=""
+            id="birthday"
+            required
             onChange={(e) => setBirth(e.target.value)}
           />
           <input
             type="tel"
             name="tel"
             id="tel"
+            required
             value={tel}
             onChange={(e) => setTel(e.target.value)}
           />
           <input
             type="Adresse"
+            required
             value={adresse}
             onChange={(e) => setAdresse(e.target.value)}
           />

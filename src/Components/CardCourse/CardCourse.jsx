@@ -27,15 +27,12 @@ const CardCourse = ({ course }) => {
   // delete Course.......................
   const deleteCourse = () => {
     axios
-      .delete(`${import.meta.env.VITE_URL}/course/delete/${course._id}`,
-      {
+      .delete(`${import.meta.env.VITE_URL}/course/delete/${course._id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
-      }
-      )
+      })
       .then((res) => {
-        console.log(res.data);
         toast.success(res.data, {
           position: "top-left",
           autoClose: 5000,
@@ -60,7 +57,6 @@ const CardCourse = ({ course }) => {
         });
       });
   };
-  console.log("students", course.students);
 
   return (
     <Card sx={{ maxWidth: 345 }} key={course._id} className="courseCard">
@@ -68,7 +64,7 @@ const CardCourse = ({ course }) => {
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
             {course.user.image ? (
-              <img src={course.user.image} alt="" className="cardPhoto"/>
+              <img src={course.user.image} alt="" className="cardPhoto" />
             ) : (
               course.user.firstName[0].toUpperCase()
             )}
@@ -109,15 +105,15 @@ const CardCourse = ({ course }) => {
       </CardContent>
       {/* display option div for authentified teachers */}
       {isAuth && user._id == course.user._id ? (
-        <div className="redirect show">
+        <div className="redirect ">
           <div
-            className="cardIcon"
+            className="cardIcon show"
             onClick={() => navigate(`/${user.role}/classes/${course._id}`)}
           >
             <SiGoogledisplayandvideo360 />
           </div>
           {user.role == "teacher" && (
-            <div className="cardIcon" id="delete" onClick={deleteCourse}>
+            <div className="cardIcon delete"  onClick={deleteCourse}>
               <IoTrashBinSharp />
             </div>
           )}
