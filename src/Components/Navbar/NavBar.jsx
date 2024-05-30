@@ -53,7 +53,12 @@ const navigate=useNavigate()
           <div className="rightNav">
           <h3>{user.role.toUpperCase()}</h3>
           <div onClick={()=>navigate(`/${user.role}/allCourses`)}>
-            {user.lastName[0].toUpperCase()+user.firstName[0].toUpperCase()}
+          {user.image ? (
+                <img src={user.image} alt="profile" className="cardPhoto" />
+              ) : (
+                user.lastName[0].toUpperCase()+user.firstName[0].toUpperCase()
+              )}
+            
           </div>
            </div>
         )}

@@ -22,9 +22,12 @@ const authSlice = createSlice({
     setRole(state,action){
       state.role=action.payload
     },
+    updateUser(state, action) {
+      state.user = action.payload;
+    },
   },
 });
 
-export const { login, logout,setRole } = authSlice.actions;
+export const { login, logout,setRole,updateUser } = authSlice.actions;
 
 export default authSlice.reducer;

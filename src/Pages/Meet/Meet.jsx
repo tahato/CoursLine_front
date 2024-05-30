@@ -26,13 +26,12 @@ const Meet = () => {
           },
         })
         .then((res) => {
-          setLien(res.data.roomUrl);
+          setLien(res.data.roomUrl);//get google meet link from database
         });
     } else {
       setLien(wherebyhostroomUrl);
     }
   }, []);
-  console.log("lieennnnn", lien);
 
   // submit link to database
   const handleSubmit = (e) => {
@@ -63,6 +62,7 @@ const Meet = () => {
         });
       })
       .catch((err) => console.log(err.data));
+      
   };
 
   return (

@@ -2,10 +2,11 @@ import { useCallback, useEffect, useState } from "react";
 import bgProfile from "../../assets/bgProfile.webp";
 import "./Profile.css";
 import { useDropzone } from "react-dropzone";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MdAddAPhoto } from "react-icons/md";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { updateUser } from "../../Redux/Slices/Authslice";
 const Profile = () => {
   const { user } = useSelector((state) => state.auth);
   const [tel, setTel] = useState();
@@ -13,9 +14,9 @@ const Profile = () => {
   const [birth, setBirth] = useState();
   const [desc, setDesc] = useState("");
   const [image, setImage] = useState();
-
+const dispatch=useDispatch()
+// SET DEFAULT PROFILE DETAILS .....................
   useEffect(() => {
-    console.log("this is user", user);
     setTel(user.tel);
     setAdresse(user.adresse);
     setBirth(user.birthday);
@@ -40,6 +41,7 @@ const Profile = () => {
   const photo = file.map((file) => (
     <img src={file.preview} alt={file.name} className="photoProfile" />
   ));
+  // edit profile to database
   const handleSubmit = (e) => {
     e.preventDefault();
     let data = new FormData();
@@ -57,7 +59,7 @@ const Profile = () => {
         },
       })
       .then((res) => {
-        toast.success(res.data, {
+        toast.success(res.data.message, {
           position: "top-left",
           autoClose: 5000,
           hideProgressBar: false,
@@ -67,6 +69,7 @@ const Profile = () => {
           progress: undefined,
           theme: "dark",
         });
+        dispatch(updateUser(res.data.updatedUser))
       })
       .catch((err) =>
         toast.error(err.response.data, {
@@ -81,7 +84,6 @@ const Profile = () => {
         })
       );
   };
-
   return (
     <div>
       <div className="upcreate">

@@ -24,3 +24,9 @@
     width: 75%;
   
  }
+ .classesTitle{
+  display: flex;
+  justify-content: space-around;
+  /* gap: 50px; */
+  width: 80%;
+ }

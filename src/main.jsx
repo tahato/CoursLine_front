@@ -25,6 +25,7 @@ import AllCourses from "./Pages/AllCourses/AllCourses.jsx";
 import Profile from "./Pages/Profile/Profile.jsx";
 import EditClasse from "./Pages/EditClasse/EditClasse.jsx";
 import About from "./Pages/About/About.jsx";
+import NotFound from "./Pages/NotFound/NotFound.jsx";
 import MainCourses from "./Pages/MainCourses/MainCourses.jsx";
 
 const router = createBrowserRouter([
@@ -121,6 +122,10 @@ const router = createBrowserRouter([
     element: <Meet />,
   },
   {
+    path: "/*",
+    element: <NotFound />,
+  },
+  {
     path: "mainCourses",
     element: <MainCourses />,
     children:[
@@ -130,6 +135,7 @@ const router = createBrowserRouter([
       },
     ]
   },
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

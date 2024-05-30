@@ -1,6 +1,5 @@
 import { RiLogoutBoxFill } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
-import { IoSettings } from "react-icons/io5";
 import { ImBooks } from "react-icons/im";
 
 import NavBar from "../../Components/Navbar/NavBar";
@@ -9,8 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { logout } from "../../Redux/Slices/Authslice";
 import { TbBellSchool } from "react-icons/tb";
-import { setComponent } from "../../Redux/Slices/CourseSlice";
-import { useEffect } from "react";
 const Teacher = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,13 +18,6 @@ const Teacher = () => {
     dispatch(logout());
     navigate("/");
   };
-  //   function to change the menu
-  const changeMenu = (m) => {
-    dispatch(setComponent(m));
-  };
-  useEffect(() => {
-    navigate("/teacher/myCourses");
-  }, []);
 
   return (
     <>
@@ -45,12 +35,12 @@ const Teacher = () => {
               <h5>{user && user.firstName}</h5>
             </div>
             <div className="imgprofile">
-            {user.image ? (
-              <img src={user.image} alt="profile" className="cardPhoto" />
-            ) : (
-              user && user.lastName[0]
-            )}
-          </div>
+              {user.image ? (
+                <img src={user.image} alt="profile" className="cardPhoto" />
+              ) : (
+                user && user.lastName[0]
+              )}
+            </div>
           </div>
           <ul className="sidelist">
             <Link to={"/teacher/allCourses"} className="sideLink">
@@ -61,10 +51,7 @@ const Teacher = () => {
               </li>
             </Link>
             <Link to={"/teacher/myCourses"} className="sideLink">
-              <li
-                className="listelement"
-                onClick={() => changeMenu("myCourses")}
-              >
+              <li className="listelement">
                 {" "}
                 <ImBooks className="sidebarIcon" />
                 My Courses

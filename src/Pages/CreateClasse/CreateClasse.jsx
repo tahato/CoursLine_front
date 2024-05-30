@@ -12,7 +12,6 @@ const {courseId}=useParams()
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
   const { user } = useSelector((state) => state.auth);
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -45,17 +44,17 @@ const {courseId}=useParams()
           theme: "dark",
         })
       )
-      .catch((err) =>console.log(err)
-        // toast.error(err.response.data, {
-        //   position: "top-left",
-        //   autoClose: 5000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   progress: undefined,
-        //   theme: "dark",
-        // })
+      .catch((err) =>
+        toast.error(err.response.data, {
+          position: "top-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        })
       );
   };
 

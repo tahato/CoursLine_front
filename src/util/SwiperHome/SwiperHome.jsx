@@ -36,8 +36,8 @@ export default function SwiperHome({courses}) {
       >
         
         {courses?.map((course)=>( 
-            <SwiperSlide key={course.id} >
-          <CardCourse  course={course}></CardCourse>
+            <SwiperSlide key={course._id} >
+          <CardCourse course={course}></CardCourse>
           </SwiperSlide>
         ))}
        

@@ -12,10 +12,16 @@ const EditClasse = () => {
    const [day,setDay]=useState()
    
 
-    // get  classe..........................
+    // get  classe info..........................
     useEffect(() => {
         axios
-      .get(`${import.meta.env.VITE_URL}/classe/${id}`)
+      .get(`${import.meta.env.VITE_URL}/classe/${id}`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+      )
       .then((res) => {
         setClasse(res.data);
         setName(res.data.name)
@@ -24,7 +30,6 @@ const EditClasse = () => {
       })
       .catch((err) => console.log( " connection failed", err.message));
     }, []);
-
 // update classe ....................
 const handleSubmit=(e)=>{
 e.preventDefault()

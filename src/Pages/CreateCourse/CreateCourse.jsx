@@ -5,7 +5,6 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 const CreateCourse = () => {
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
   const [school, setSchool] = useState("");
   const [module, setModule] = useState("");
   const [level, setLevel] = useState("");
@@ -84,13 +83,14 @@ const CreateCourse = () => {
         <form action="" className="rightForm" onSubmit={(e) => handleSubmit(e)}>
           <select name="school"value={school}  onChange={(e) => setSchool(e.target.value)}>
             <option value="Middle Schoo">Middle School</option>
-            <option value="Secondary School">Secondary School</option>
+            <option value="Secondary School">High School</option>
             <option value="University">University</option>
           </select>
           <input
             type="text"
             placeholder="Enter speciality"
             value={category}
+            maxLength = "25"
             onChange={(e) => setCategory(e.target.value)}
           />
           <select
@@ -109,6 +109,7 @@ const CreateCourse = () => {
             type="text"
             placeholder="Mathematique"
             name="module"
+            maxLength = "25"
             onChange={(e) => setModule(e.target.value)}
           />
           <input

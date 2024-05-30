@@ -1,6 +1,6 @@
 footer{
     width: 100%;
-    position: fixstaticed;
+    position: relative;
     bottom: 0;
     background-color: black;
     color: white;

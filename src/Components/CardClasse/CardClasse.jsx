@@ -5,29 +5,48 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import room from "../../assets/room.webp";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IoTrashBinSharp } from "react-icons/io5";
 import { SiGoogledisplayandvideo360 } from "react-icons/si";
 import { RiEdit2Fill } from "react-icons/ri";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+import { updateUser } from "../../Redux/Slices/Authslice";
 
 const CardClasse = ({ classe }) => {
   const { isAuth } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // dialog confirmation pop-up
+  const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  // delete classe function
   const deleteClasse = () => {
     axios
-      .delete(`${import.meta.env.VITE_URL}/classe/delete/${classe._id}`,
-      {
+      .delete(`${import.meta.env.VITE_URL}/classe/delete/${classe._id}`, {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
-      }
-      )
+      })
       .then((res) => {
-        console.log(res.data);
         toast.success(res.data.message, {
           position: "top-left",
           autoClose: 5000,
@@ -51,9 +70,45 @@ const CardClasse = ({ classe }) => {
           theme: "dark",
         });
       });
+    navigate(`/teacher/myCourses`);
   };
-  // add a student for a classe
+    // add student to courses
+    const addStudToCourse = () => {
+      axios
+      .put(
+        `${import.meta.env.VITE_URL}/course/student/${classe.course._id}`,
+        {
+          userId: user._id,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err.data));
+    }
+    // add student to classe (push id student to classe document)
+    const addStudToClasse = () => {
+      axios
+      .put(
+        `${import.meta.env.VITE_URL}/classe/student/${classe._id}`,
+        {
+          userId: user._id,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err.data));
+    }
+  // student join a class function ,student id will be added to Classe and course document ,and student will get course id and classe id
   const joinClasse = () => {
+    // add classe id and course id to sutdent
     axios
       .put(
         `${import.meta.env.VITE_URL}/user/classe/${user._id}`,
@@ -67,8 +122,8 @@ const CardClasse = ({ classe }) => {
           },
         }
       )
-      .then((res) =>
-        toast.success(res.data, {
+      .then((res) =>{
+        toast.success(res.data.message, {   
           position: "top-left",
           autoClose: 2000,
           hideProgressBar: false,
@@ -78,6 +133,8 @@ const CardClasse = ({ classe }) => {
           progress: undefined,
           theme: "dark",
         })
+        dispatch(updateUser(res.data.user)) // update user to get new list of courses
+      }
       )
       .catch((err) =>
         toast.error(err.response.data, {
@@ -92,35 +149,9 @@ const CardClasse = ({ classe }) => {
         })
       );
     // add student to courses
-    axios
-      .put(
-        `${import.meta.env.VITE_URL}/course/student/${classe.course._id}`,
-        {
-          userId: user._id,
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      )
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err.data));
+    addStudToCourse()
     // add student to classes
-    axios
-      .put(
-        `${import.meta.env.VITE_URL}/classe/student/${classe._id}`,
-        {
-          userId: user._id,
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      )
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err.data));
+    addStudToClasse()
   };
 
   return (
@@ -143,6 +174,7 @@ const CardClasse = ({ classe }) => {
           </div>
         </Typography>
       </CardContent>
+      {/* teacher side buttons options div */}
       {isAuth && user.role == "teacher" ? (
         <div className="redirect">
           <div
@@ -159,11 +191,12 @@ const CardClasse = ({ classe }) => {
           >
             <RiEdit2Fill />
           </div>
-          <div className="cardIcon delete " onClick={deleteClasse}>
+          <div className="cardIcon delete " onClick={handleClickOpen}>
             <IoTrashBinSharp />
           </div>
         </div>
       ) : (
+        //  student side buttons options div
         isAuth &&
         user.role == "student" && (
           <div className="redirect">
@@ -183,7 +216,7 @@ const CardClasse = ({ classe }) => {
           </div>
         )
       )}
-
+      {/* tostify component */}
       <ToastContainer
         position="top-left"
         autoClose={5000}
@@ -196,6 +229,30 @@ const CardClasse = ({ classe }) => {
         pauseOnHover
         theme="dark"
       />
+      <Dialog
+        fullScreen={fullScreen}
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        {/* dialog dlelte confirmation */}
+        <DialogTitle id="responsive-dialog-title">
+          {"Are you sur ?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            By click on delete you will remove this classe
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button onClick={deleteClasse} autoFocus style={{ color: "red" }}>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Card>
   );
 };

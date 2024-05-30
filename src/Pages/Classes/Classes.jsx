@@ -10,7 +10,6 @@ const Classes = () => {
   const [classes, setClasses] = useState();
   const { courseId } = useParams();
   const [err, setErr] = useState();
-  const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -44,11 +43,19 @@ const Classes = () => {
           <h1>{err}</h1>
         </div>
       ) : (
-        <div className="courseContainer">
-          {classes?.map((classe) => (
-            <CardClasse classe={classe} key={classe._id}></CardClasse>
-          ))}
-        </div>
+        <>
+          {/* <div className="classesTitle">
+            <h1> {classes[0].course.module}</h1>
+            <h1> {classes[0].course.school}</h1>
+            <h1> {classes[0].course.category}</h1>
+          </div> */}
+
+          <div className="courseContainer">
+            {classes?.map((classe) => (
+              <CardClasse classe={classe} key={classe._id}></CardClasse>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
